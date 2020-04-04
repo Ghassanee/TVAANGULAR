@@ -1,0 +1,111 @@
+<div class="card">
+  <div class="card-header">
+    <h3 style="text-align: center">Enregister un nouveau Taux De IS</h3>
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="save();update()">
+
+      <div class="form-group">
+        <h5 class="alert-danger" style="text-align: center"> {{errorMsg()}} </h5>
+
+        <div class="row">
+          <div class="col-md-6">
+            <h5>Taux reference</h5>
+            <input type="text" class="form-control" placeholder="Taux ref" required="required" [(ngModel)]="tauxDeIs.ref" name="reference">
+          </div>
+          <div class="col-md-6">
+            <h5>Montant minimum</h5>
+            <input type="number" class="form-control" placeholder="montant minimum" required="required" [(ngModel)]="tauxDeIs.montantMin" name="reference">
+          </div>
+        </div>
+          <div class="row">
+          <div class="col-md-6">
+            <h5>Montant maximun</h5>
+            <input type="number" class="form-control" placeholder="montant maximum" required="required" [(ngModel)]="tauxDeIs.montantMax" name="reference">
+          </div>
+
+          <div class="col-md-6">
+            <h5>Taux minimum %</h5>
+            <input type="number" class="form-control"  placeholder="Taux minimum" required="required" [(ngModel)]="tauxDeIs.tauxMin" name="tauxDeismin">
+          </div>
+          </div>
+
+          <div class="row">
+
+          <div class="col-md-6">
+            <h5>Taux moyen %</h5>
+            <input type="number" class="form-control"  placeholder="Taux moyen" required="required" [(ngModel)]="tauxDeIs.tauxMoy" name="tauxDeismoy">
+          </div>
+          <div class="col-md-6">
+            <h5>Taux Maximum %</h5>
+            <input type="number" class="form-control"  placeholder="Taux maximum" required="required" [(ngModel)]="tauxDeIs.tauxMax" name="tauxDeismax">
+          </div>
+
+        </div>
+
+        <div class="row"> <br> </div>
+
+        <div class="row">
+
+          <div class="col-md-6">
+            <h5>Date Debut </h5>
+            <input type="date" class="form-control"   required="required" [(ngModel)]="tauxDeIs.dateDebut" name="datedebut">
+          </div>
+
+          <div class="col-md-6">
+            <h5>Date Fin</h5>
+            <input type="date" class="form-control"  required="required" [(ngModel)]="tauxDeIs.dateFin" name="datefin">
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-outline-success " style="width: 150px;text-align: center;margin-top: 30px;margin-left: 40px;float: right" (click)="save()">Save</button>
+        </div>
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-outline-info " style="width: 150px;text-align: center;margin-top: 30px;margin-left: 0px" (click)="update()">Update</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+<div class="card" style="margin-top: 10px">
+  <div class="card-header" style="text-align: center; color: darkcyan" ><h4>Liste de Taux IS</h4></div>
+  <div class="card-body">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Reference</th>
+        <th scope="col">Taux minimum</th>
+        <th scope="col">Taux moyen</th>
+        <th scope="col">Taux max</th>
+        <th scope="col">Montant minimum</th>
+        <th scope="col">Montant maximum</th>
+        <th scope="col">Date debut</th>
+        <th scope="col">Date fin</th>
+        <th scope="col">Action</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let d of listTauxDeIs">
+        <th scope="row">{{d.ref}}</th>
+        <td>{{d.tauxMin}}</td>
+        <td>{{d.tauxMoy}}</td>
+        <td>{{d.tauxMax}}</td>
+        <td>{{d.montantMin}}</td>
+        <td>{{d.montantMax}}</td>
+        <td>{{d.dateDebut}}</td>
+        <td>{{d.dateFin}}</td>
+        <td><button type="button" class="btn btn-danger" (click)="deleteByRef(d.ref)" >Delete</button></td>
+      </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+
+</div>

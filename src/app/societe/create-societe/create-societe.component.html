@@ -1,0 +1,74 @@
+<br>
+<br>
+<div class="card">
+  <div class="card-header">
+    <h3>Enregister une nouvelle sociéte</h3>
+  </div>
+  <div class="card-body">
+
+    <!--<div class="form-group">
+  <label>id</label>
+  <input type="number" class="form-control">
+</div>!-->
+      <div class="form-group">
+      <div class="row">
+
+        <div class="col-md-6">
+          <label>Nom</label>
+          <input type="text" class="form-control" [(ngModel)]="soc.nom" placeholder="votre nom de société">
+        </div>
+        <div class="col-md-6">
+          <label>Reference</label>
+          <input type="text" class="form-control" [(ngModel)]="soc.ref" placeholder="votre reference de société">
+        </div>
+      </div>
+
+
+        <div class="row">
+
+          <div class="col-md-6">
+            <label>Adresse</label>
+            <input type="text" class="form-control" [(ngModel)]="soc.adresse" placeholder="votre adresse de société">
+          </div>
+          <div class="col-md-6">
+            <label>Nombre d'employés</label>
+            <input type="text" class="form-control" [(ngModel)]="soc.nbrEmployes" placeholder="votre nombre d'employées">
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-6">
+            <label>Capital</label>
+            <input type="text" class="form-control" [(ngModel)]="soc.capital" placeholder="votre capital de société">
+          </div>
+          <div class="col-md-6">
+            <label>Type de Société</label>
+         <select class="custom-select " [(ngModel)]="soc.typeSocieteRef" >
+
+              <option *ngFor="let c of typeSocs" >{{c.libelle}}</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+
+  </div>
+  <div class="card-footer">
+    <div class="container">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <button type="submit"class="btn btn-outline-danger btn-block"  (click)="save()">Save</button>
+      </div>
+      <div class="col-md-4"></div>
+      </div>
+    </div>
+  </div>
+</div>
+

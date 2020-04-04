@@ -1,0 +1,130 @@
+<div class="card">
+  <div class="card-header">
+    <h3 style="text-align: center ; color: darkcyan">Enregister une nouvelle declaration IS</h3>
+  </div>
+  <div class="card-body">
+    <form action="post">
+
+      <div class="form-group">
+        <h5 class="alert-danger" style="text-align: center"> {{errorMsg()}} </h5>
+
+        <div class="row">
+          <div class="col-md-6">
+            <h5>Declaration reference</h5>
+            <input type="text" class="form-control" placeholder="Declaration ref" required="required" [(ngModel)]="declarationIs.reference" name="reference">
+          </div>
+          <div class="col-md-6">
+           <h5>Taux de Is reference</h5>
+            <input type="text" class="form-control"  placeholder="Taux reference" required="required" [(ngModel)]="declarationIs.tauxDeISRef" name="tauxDeisRef">
+          </div>
+        </div>
+        <div class="row"> <br></div>
+
+        <div class="row">
+
+          <div class="col-md-6">
+            <h5> Societe Reference</h5>
+            <input type="text" class="form-control"  placeholder="Societe ref" required="required" [(ngModel)]="declarationIs.societeRef" name="societeRef">
+          </div>
+
+          <div class="col-md-6">
+           <h5>Declaration Tva Reference</h5>
+            <input type="text" class="form-control" placeholder="Declaration tva ref" required="required" [(ngModel)]="declarationIs.declarationTvaRef" name="declarationtvaref">
+          </div>
+
+        </div>
+
+        </div>
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-outline-success " style="width: 150px;text-align: center;margin-top: 30px;margin-left: 40px;float: right" (click)="save()">Save</button>
+        </div>
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-outline-info " style="width: 150px;text-align: center;margin-top: 30px;margin-left: 0px" (click)="update()">Update</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><h3 class="alert-success" style="text-align: center">Le total charge , gain et le benefice net du societé</h3> </div>
+    <div class="form">
+      <div class="row" style="margin-left: 32%">
+      <div class="col-md-6">
+        <div> <h5>Declaration tva reference de votre societe</h5></div>
+        <input type="text" class="form-control" placeholder=" la Declaration tva reference" required="required" [(ngModel)]="declarationIs.declarationTvaRefCalcul" name="declarationtvarefcalcul">
+      </div>
+      <br>
+      <div class="col-md-6">
+        <button type="button" style="margin-top: 32px" class="btn btn-info" (click)="BeneficeNet(declarationIs.declarationTvaRefCalcul);totalCharge(declarationIs.declarationTvaRefCalcul);totalGain(declarationIs.declarationTvaRefCalcul)" > Calculer </button>
+      </div>
+      </div>
+        <br>
+
+      </div>
+      <div class="card-footer" style="text-align: center" >
+        <h4>Total Gain: <h5 style="color: #34ff6f">{{declarationIs.totalgain}} Dh</h5></h4><br>
+        <h4>Total Charge: <h5 style="color: #34ff6f">{{declarationIs.totalcharge}} Dh</h5></h4><br>
+        <h4 class="badge-success">benefice Net: <h5 style="color: #34ff6f">{{declarationIs.benefice}} Dh</h5></h4> </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" ><h3 style="color: #ffd11a ;text-align: center" class="btn-info">Facture</h3> </div>
+    <div class="form" style="margin-left: 35%">
+      <div class="col-md-12"> <div> <h5>Declaration IS reference de votre societe</h5></div>
+        <input type="text" class="form-control" style="width: 400px" placeholder=" la Declaration tva reference" required [(ngModel)]="declarationIs.referencecalcul" name="declarationisrefcalcul">
+      </div>
+      <div class="col-md-12"> <div> <h5>Date Facture</h5></div>
+        <input  type=date  class="form-control" style="width: 400px" required="required" [(ngModel)]="declarationIs.datefacture " name="datefacture">
+      </div>
+      <div class="col-md-12"> <div> <h5>Date Paiment</h5></div>
+        <input  type=date  class="form-control" style="width: 400px" required="required" [(ngModel)]="declarationIs.datepaiment " name="datepaiment">
+      </div>
+
+      <br>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-info" style="; margin-left: 130px" (click)="montantPenality(declarationIs.referencecalcul,declarationIs.datefacture,
+        declarationIs.datepaiment);montantWithNoPenality(declarationIs.referencecalcul);
+        montantWithPenality(declarationIs.referencecalcul,declarationIs.datefacture,declarationIs.datepaiment)" > Calculer </button>
+      </div> <br>
+    </div>
+      <div class="card-footer" style="text-align: center" >
+        <h4>Montant Hors Penalité : <h5 style="color: red">{{declarationIs.montantsanspenal}} Dh</h5></h4> <br>
+        <h4>Penalié du délai : <h5 style="color: red">{{declarationIs.montantpenalite}} Dh</h5></h4><br>
+        <h4 class="badge-warning">Total à payer : <h5 style="color: red">{{declarationIs.montantavecpenalite}} Dh</h5></h4>
+      </div>
+
+  </div>
+
+<div class="card" style="margin-top: 10px">
+  <div class="card-header" style="text-align: center; color: darkcyan" ><h4>Liste de declaration IS</h4></div>
+  <div class="card-body">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Reference</th>
+        <th scope="col">DeclarationTvaref</th>
+        <th scope="col">societeRef</th>
+        <th scope="col">TauxDeIsRef</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let d of Declarationlistis">
+        <th scope="row">{{d.reference}}</th>
+        <td>{{d.declarationTvaRef}}</td>
+        <td>{{d.societeRef}}</td>
+        <td>{{d.tauxDeISRef}}</td>
+        <td><button type="button" class="btn btn-danger" (click)="removeByRef(d.reference)" >Delete</button></td>
+      </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+
+</div>

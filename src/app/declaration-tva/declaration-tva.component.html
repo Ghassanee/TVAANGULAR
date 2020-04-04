@@ -1,0 +1,177 @@
+<div class="card">
+  <div class="card-header">
+    <h3>Enregister une nouvelle sociéte</h3>
+  </div>
+  <div class="card-body">
+    <form action="post">
+
+      <div class="form-group">
+        <p class="alert-danger"  > {{showError()}} </p>
+        <div class="row">
+
+          <div class="col-md-6">
+            <label>ref</label>
+            <input type="text" class="form-control" required="required" [(ngModel)]="declarationTVA.ref" name="ref">
+          </div>
+          <div class="col-md-6">
+            <label>societeRef</label>
+            <input type="text" class="form-control" [(ngModel)]="declarationTVA.societeRef" name="societeRef">
+          </div>
+        </div>
+
+
+        <div class="row">
+
+          <div class="col-md-6">
+            <label>totalTva</label>
+            <input type="number" class="form-control" [(ngModel)]="declarationTVA.totalTva" name="totalTva">
+          </div>
+          <div class="col-md-6">
+              <label>annee</label>
+            <input type="number" class="form-control" [(ngModel)]="declarationTVA.annee" name="annee">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card" style="margin: 10px 2px 2px 0 ;  ">
+              <div class="card-header">
+                <h3>Enregister une nouvelle facture Charge</h3>
+              </div>
+              <div class="card-body">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label>ref</label>
+                        <input type="number" class="form-control" [(ngModel)]="factureCharge.numeroFacture"  name="refC">
+                      </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-12">
+                      <button type=""class="btn btn-outline-danger " style="margin-top: 8px" (click)="addFactureCharges(factureCharge)">Save</button>
+                    </div>
+                    </div>
+                  </div>
+                <div class="row ">
+                  <div class="col-md-12">
+                    <table class="table table-hover">
+                      <thead>
+                      <tr>
+                        <th scope="col">Reference</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let s of declarationTVA.factureCharges">
+
+                        <td>{{s.numeroFacture}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+
+
+
+          <div class="col-md-6">
+            <div class="card" style="margin: 10px 2px 2px 0px ; ">
+              <div class="card-header">
+                <h3>Enregister une nouvelle facture Gain</h3>
+              </div>
+              <div class="card-body">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label>ref</label>
+                        <input type="number" class="form-control" [(ngModel)]="factureGain.numeroFacture"  name="refG">
+                      </div>
+                    </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button type="" class="btn btn-outline-danger " style="margin-top: 8px" (click)="addFactureGains(factureGain)">Save</button>
+                    </div>
+                  </div>
+                  </div>
+                <div class="row ">
+                  <div class="col-md-12">
+                    <table class="table table-hover">
+                      <thead>
+                      <tr>
+                        <th scope="col">Reference</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let s of declarationTVA.factureGains">
+                        <td>{{factureChargeService.findByNumeroFacture(s.numeroFacture)}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <button type="submit"class="btn btn-outline-danger " style="width: 350px;text-align: center;margin-top: 30px;margin-left: 40px" (click)="save()">Save</button>
+        </div>
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-outline-success " style="width: 350px;text-align: center;margin-top: 30px;margin-left: 0px" (click)="update()">Update</button>
+        </div>
+      </div>
+      </div>
+    </form>
+
+
+  </div>
+
+
+</div>
+
+<div class="card" style="margin-top: 10px">
+  <div class="card-header">Liste de declaration IR</div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Ref</th>
+        <th scope="col">totalTva</th>
+        <th scope="col">societeRef</th>
+        <th scope="col">annee</th>
+        <th scope="col">factureCharges</th>
+        <th scope="col">factureGains</th>
+        <th scope="col">Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let d of listDeclarationTVA">
+        <th scope="row">{{d.ref}}</th>
+        <td>{{d.totalTva}}</td>
+        <td>{{d.societeRef}}</td>
+        <td>{{d.annee}}</td>
+        <td><ul>
+          <li *ngFor="let DC of d.factureCharges">
+            {{ DC.numeroFacture }}
+          </li>
+        </ul></td>
+        <td><ul>
+          <li *ngFor="let DG of d.factureCharges">
+            {{ DG.numeroFacture }}
+          </li>
+        </ul></td>
+        <td><button type="button" class="btn btn-danger" (click)="deleteByRef(d.ref)" >Delete</button></td>
+      </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+  <button type="button"  routerLink="/is"
+  class="btn btn-secondary btn-sm"> Next <i class="fa fa-chevron-right" style="font-size:12px"></i></button>
+</div>
+

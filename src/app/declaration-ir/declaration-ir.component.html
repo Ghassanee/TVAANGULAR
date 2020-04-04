@@ -1,0 +1,106 @@
+<div class="row">
+<div class="card">
+  <div class="card-header">
+    <h3>Enregister une nouvelle declaration IR</h3>
+  </div>
+  <div class="card-body">
+ 
+
+<form>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationServer01">Declaration-ir Reference</label>
+      <input type="text" class="form-control is-valid" [(ngModel)]="declarationIR.ref"  id="validationServer01" placeholder="AB123"    required>
+      <div class="valid-feedback">
+       
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationServer02">Emplye Reference </label>
+      <input type="text" class="form-control is-valid" [(ngModel)]="declarationIR.emplyeRef"  id="validationServer02" placeholder="AB123"   required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationServerUsername"> Societe Reference</label>
+      <div class="input-group">
+      
+        <input type="text" class="form-control is-invalid" [(ngModel)]="declarationIR.societeRef" id="validationServerUsername" placeholder="AB123" aria-describedby="inputGroupPrepend3" required>
+        <div class="invalid-feedback">
+          Please choose a username.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationServer03">Salaire</label>
+      <input type="number" class="form-control is-invalid" [(ngModel)]="declarationIR.salaire" id="validationServer03" placeholder="1234" required>
+      <div class="invalid-feedback">
+        Please provide a valid city.
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationServer04">Montant Declaration</label>
+      <input type="number" class="form-control is-invalid" [(ngModel)]="declarationIR.montantDeclaration"   id="validationServer04" placeholder="1243" required>
+      <div class="invalid-feedback">
+        Please provide a valid state.
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationServer05">Taux De-IR Ref</label>
+      <input type="text" class="form-control is-invalid" id="validationServer05"  [(ngModel)]="declarationIR.tauxDeIrRef" placeholder="AB123" required>
+      <div class="invalid-feedback">
+        Please provide a valid zip.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
+      <label class="form-check-label" for="invalidCheck3">
+        Agree to terms and conditions
+      </label>
+      <div class="invalid-feedback">
+        You must agree before submitting.
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit form</button>
+</form>
+  </div>
+</div>
+<div class="card" style="margin-top: 10px">
+<div class="card-header">Liste de declaration IR</div>
+       <div class="card-body">
+         <table class="table table-striped">
+           <thead>
+           <tr>
+             <th scope="col">Ref</th>
+             <th scope="col">emplyeRef</th>
+             <th scope="col">societeRef</th>
+             <th scope="col">salaire</th>
+             <th scope="col">montantDeclaration</th>
+             <th scope="col">tauxDeIrRef</th>
+             <th scope="col">Delete</th>
+           </tr>
+           </thead>
+           <tbody>
+           <tr *ngFor="let d of listDeclarationIR">
+             <th scope="row">{{d.ref}}</th>
+             <td>{{d.emplyeRef}}</td>
+             <td>{{d.societeRef}}</td>
+             <td>{{d.salaire}}</td>
+             <td>{{d.montantDeclaration}}</td>
+             <td>{{d.tauxDeIrRef}}</td>
+             <td><button type="button" class="btn btn-danger" (click)="removeByRef(d.ref)" >Delete</button></td>
+           </tr>
+           </tbody>
+         </table>
+
+
+       </div>
+
+      </div>
+</div>

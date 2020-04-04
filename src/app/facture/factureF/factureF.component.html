@@ -1,0 +1,170 @@
+<h3>Creation d une facture </h3>
+<br>
+<div class="container">
+  <div class="row">
+
+
+
+<form>
+  <h6>Declaration TVA</h6>
+  <div class="form-row v">
+
+  <br><br><br><br>
+  <div class="form-group col-md-6">
+    <label>Societe</label>
+    <label class="mr-sm-2 sr-only" for="inputState">Societe</label>
+    <select class="custom-select mr-sm-2" >
+      <option *ngFor="let s of socs" [value]="s.ref">{{s.nom}}</option>
+    </select>
+  </div>
+  <div class="col-md-6 form-group">
+    <label>SocieteReF</label>
+    <input type="text" class="form-control" [(ngModel)]="declarationTVA.societeRef" [ngModelOptions]="{standalone: true}">
+  </div>
+  <div class="col-md-6 form-group">
+    <label>Annee</label>
+    <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Annee</label>
+    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" [(ngModel)]="declarationTVA.annee" [ngModelOptions]="{standalone: true}">
+      <option selected>Annee...</option>
+      <option value="2018">2018</option>
+      <option value="2019">2019</option>
+      <option value="2020">2020</option>
+      <option value="2021">2021</option>
+    </select>
+  </div>
+
+  <div class="col-md-6 form-group">
+    <label>Total TVA</label>
+    <input type="number" class="form-control" [(ngModel)]="declarationTVA.totalTva" [ngModelOptions]="{standalone: true}">
+  </div>
+  <div class="col-md-6 form-group">
+    <label>DeclarationTvaRef</label>
+    <input type="text" class="form-control" [(ngModel)]="declarationTVA.ref" [ngModelOptions]="{standalone: true}">
+  </div>
+<br><br><br>
+<form>
+  <h6>Creation de la Facture </h6>
+
+  <div class="form-row h">
+
+    <div class="form-group col-md-6">
+      <label>Societe</label>
+      <label class="mr-sm-2 sr-only" for="inputState">Societe</label>
+      <select class="custom-select mr-sm-2">
+        <option *ngFor="let s of socs" [value]="s.ref">{{s.nom}}</option>
+      </select>
+    </div>
+    <div class="col-md-6 form-group">
+      <label>SocieteReF</label>
+      <input type="text" class="form-control" [(ngModel)]="facture.societetRef" [ngModelOptions]="{standalone: true}" [value]="facture.societetRef">
+    </div>
+    <br><br><br>
+    <div class="col-md-6 form-group">
+      <label>Nom du Facture</label>
+      <input type="text" class="form-control" [(ngModel)]="facture.nomFacture" [ngModelOptions]="{standalone: true}">
+    </div><br>
+    <div class="col-md-6 form-group">
+      <label>Numero de Facture</label>
+      <input type="text" class="form-control" [(ngModel)]="facture.numeroFacture" [ngModelOptions]="{standalone: true}">
+    </div><br>
+    <div class="col-md-6 form-group">
+      <label>Date de Facturation</label>
+      <input type="date" class="form-control" [(ngModel)]="facture.dateFacturation" [ngModelOptions]="{standalone: true}">
+    </div><br>
+    <div class="col-md-6 form-group">
+      <label>Date de Payment</label>
+      <input type="date" class="form-control" [(ngModel)]="facture.datePaiement" [ngModelOptions]="{standalone: true}">
+    </div><br>
+    <div class="col-md-6 form-group">
+      <label>Montant HT</label>
+      <input type="number" class="form-control" [(ngModel)]="facture.montantHT" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="col-md-6 form-group">
+      <label>Montant TTC</label>
+      <input type="number" class="form-control" [(ngModel)]="facture.montantTTC" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="col-md-6 form-group">
+      <label>TVA</label>
+      <input type="number" class="form-control " [(ngModel)]="facture.tva" [ngModelOptions]="{standalone: true}">
+    </div>
+
+    <div class="form-group col-md-4 type">
+      <label for="inputState">Type de facture</label>
+      <select id="inputState" class="form-control" onchange="ff(this)">
+        <option selected>Choose...</option>
+        <option value="1">Facture de charge</option>
+        <option value="2">Facture de gain</option>
+      </select>
+    </div>
+    <div class="form-group col-md-8 " id="fournisseur">
+      <div class="col-md-6 form-group">
+        <h6>Fournisseur</h6>
+        <label>Nom Complet</label>
+        <input type="text" class="form-control" placeholder="Full name">
+      </div>
+      <div class="col-md-6 form-group">
+        <label>CNE</label>
+        <input type="text" class="form-control" placeholder="CNE">
+      </div>
+    </div>
+    <div class="form-group col-md-8 " id="client">
+      <div class="col-md-6 form-group">
+        <h6>Client</h6>
+        <label>Nom Complet</label>
+        <input type="text" class="form-control" placeholder="Full name">
+      </div>
+      <div class="col-md-6 form-group">
+        <label>CNE</label>
+        <input type="text" class="form-control" placeholder="CNE">
+      </div>
+    </div>
+
+
+  </div>
+</form> <br><button type="button" class="btn btn-primary btn-block " (click)="save()">Add</button>
+</div>
+
+<hr>
+<h3>Liste des factures</h3>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#Num de Facture</th>
+      <th scope="col">Reference</th>
+      <th scope="col">Nom de Facture</th>
+      <th scope="col">Handle</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let fs of factures">
+      <th scope="row">{{fs.montantTTC}}</th>
+      <td>{{fs.declarationTva}}</td>
+      <td>Otto</td>
+      <td>Something</td>
+
+      <td><a href="#"><i class="fas fa-edit"></i></a>
+      </td>
+      <td><a href="#"><i class="fa fa-trash"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table><br>
+</form>
+</div><br>
+<button type="button" class="btn btn-primary btn-block" >Enregistrer</button><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <!-- <button type="button"  routerLink="/facture/tva"
+        class="btn btn-secondary "><i class="fa fa-chevron-left" style="font-size:12px"></i> Back</button> -->
+    </div>
+
+    <div class="col-md-8"></div>
+    <div class="col-md-2"><button type="button" routerLink="/declarationTva" class="btn btn-secondary "> Next <i
+          class="fa fa-chevron-right" style="font-size:12px"></i></button></div>
+  </div>
+</div>
+
+<br><br>

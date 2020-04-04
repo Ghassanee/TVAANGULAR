@@ -1,0 +1,15 @@
+<h5>Liste des types de societes</h5>
+<table class="table">
+  <thead class="thead-dark">
+    <tr >
+      <th scope="col">Id</th>
+      <th scope="col">Libelle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of typeSocs">
+      <td>{{c.id}}</td>
+      <td>{{c.libelle}}</td>
+    </tr>
+  </tbody>
+</table>

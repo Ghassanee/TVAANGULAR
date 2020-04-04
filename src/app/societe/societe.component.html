@@ -1,0 +1,82 @@
+<!--<div class="card">
+  <div class="card-headar">
+  </div>
+  <div class="card-body">
+    <table class="table-hover table-striped">
+      <thead>
+      <th>id</th>
+      <th>nom</th>
+      <th>adresse</th>
+      <th>nombre d'employés</th>
+      <th>capital</th>
+      <th>type Societe</th>
+      </thead>
+      <tbody>
+      <tr >
+        <td>dh</td>
+        <td>dfjh</td>
+        <td>dhdj</td>
+        <td>hdh</td>
+        <td>hgdsh</td>
+        <td>ghdh</td>
+      </tr>
+      </tbody>
+
+    </table>
+  </div>
+  <div class="card-footer"></div>
+</div>!-->
+<app-type-societe></app-type-societe>
+<app-create-societe></app-create-societe>
+<br>
+<br>
+
+
+<div class="card">
+  <div class="card-header">
+<h3>Liste des Sociétes </h3>
+  </div>
+<div class="card-body">
+  <div class="row ">
+    <div class="col-md-12">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Reference</th>
+          <th scope="col">Adresse</th>
+          <th scope="col">Nombre d'employés</th>
+          <th scope="col">Capital</th>
+          <th scope="col">Type de societe</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let s of socs and let episode of soc.id ; let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{s.nom}}</td>
+          <td>{{s.ref}}</td>
+          <td>{{s.adresse}}</td>
+          <td>{{s.nbrEmployes}}</td>
+          <td>{{s.capital}}</td>
+          <td>{{s.typeSocieteRef}}</td>
+          <td><button class="btn btn-info btn-sm  fa fa-trash  " (click)="deleteByRef(s)"></button> <button class="btn btn-danger btn-sm fa fa-plus" (click)="findByRef(s)"></button>
+
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+  <div class="card-footer">
+
+
+  </div>
+
+  </div>
+
+<button routerLink="/createEmployes" type="button" class="btn btn-secondary btn-block">Next <i class="fa fa-chevron-right" style="font-size:12px"></i></button>
+
